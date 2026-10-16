@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tlb_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-16 14:54+0000\n"
+"PO-Revision-Date: 2026-10-16 14:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: tlb_custom
+#: model:ir.model.fields,field_description:tlb_custom.field_account_bank_statement_line__can_edit_customer_invoice_date
+#: model:ir.model.fields,field_description:tlb_custom.field_account_move__can_edit_customer_invoice_date
+#: model:res.groups,name:tlb_custom.group_edit_customer_invoice_date
+msgid "Can Edit Customer Invoice Date"
+msgstr "Peut modifier la date des factures clients"
+
+#. module: tlb_custom
+#: model_terms:ir.ui.view,arch_db:tlb_custom.account_move_view_form
+msgid ""
+"If left empty, today's date will be assigned when the document is posted."
+msgstr ""
+"Si elle est laissée vide, la date du jour sera attribuée lors de la "
+"comptabilisation."
+
+#. module: tlb_custom
+#. odoo-python
+#: code:addons/tlb_custom/models/account_move.py:0
+msgid ""
+"You cannot post a customer invoice or credit note with an invoice date "
+"different from today."
+msgstr ""
+"Vous ne pouvez pas comptabiliser une facture client ou un avoir avec une "
+"date de facturation différente de la date du jour."
