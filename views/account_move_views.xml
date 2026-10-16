@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 Enrico Stano
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_move_view_form" model="ir.ui.view">
+        <field name="name">account.move.form.tlb.custom</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='invoice_date' and contains(@invisible, 'out_invoice')]"
+                position="before"
+            >
+                <field name="can_edit_customer_invoice_date" invisible="1"/>
+            </xpath>
+
+            <xpath
+                expr="//field[@name='invoice_date' and contains(@invisible, 'out_invoice')]"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    add="(move_type in ('out_invoice', 'out_refund') and not can_edit_customer_invoice_date)"
+                    separator=" or "
+                />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

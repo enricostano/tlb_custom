@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 Enrico Stano
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="group_edit_customer_invoice_date" model="res.groups">
+        <field name="name">Can Edit Customer Invoice Date</field>
+    </record>
+</odoo>
