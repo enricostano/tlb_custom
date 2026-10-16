@@ -13,6 +13,7 @@ class AccountMove(models.Model):
 
     can_edit_customer_invoice_date = fields.Boolean(
         compute="_compute_can_edit_customer_invoice_date",
+        default=lambda self: self._user_can_edit_customer_invoice_date(),
     )
 
     def _user_can_edit_customer_invoice_date(self):
