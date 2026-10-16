@@ -13,13 +13,24 @@ class AccountMove(models.Model):
 
     can_edit_customer_invoice_date = fields.Boolean(
         compute="_compute_can_edit_customer_invoice_date",
-        default=lambda self: self._user_can_edit_customer_invoice_date(),
     )
 
+    @api.model
     def _user_can_edit_customer_invoice_date(self):
         return self.env.user.has_group(
             "tlb_custom.group_edit_customer_invoice_date"
         )
+
+    @api.model
+    def default_get(self, fields_list):
+        values = super().default_get(fields_list)
+
+        if "can_edit_customer_invoice_date" in fields_list:
+            values["can_edit_customer_invoice_date"] = (
+                self._user_can_edit_customer_invoice_date()
+            )
+
+        return values
 
     @api.depends_context("uid")
     def _compute_can_edit_customer_invoice_date(self):
@@ -30,6 +41,7 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         if not self._user_can_edit_customer_invoice_date():
             today = fields.Date.context_today(self)
+
             invalid_moves = self.filtered(
                 lambda move: (
                     move.move_type in RESTRICTED_CUSTOMER_MOVE_TYPES
@@ -37,6 +49,7 @@ class AccountMove(models.Model):
                     and move.invoice_date != today
                 )
             )
+
             if invalid_moves:
                 raise UserError(
                     _(
